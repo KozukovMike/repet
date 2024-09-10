@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block class5 %}
+    <link rel="stylesheet" href="{% static 'css/class.css' %}">
+    <style>
+        .task-list {
+            display: none;
+        }
+    </style>
+<div class="container">
+    <div class="sidebar">
+        <h3>Темы заданий</h3>
+        <ul id="topic-list">
+            {% for topic in topic_list %}
+                <li>
+                    <a href="#" class="topic-link" data-topic="{{ topic.id }}">{{ topic.name }}</a>
+                    <ul class="task-list" id="task-list-{{ topic.id }}">
+                        {% for task in topic.tasks.all %}
+                            <li><a href="#" class="task-link" data-task="{{ task.id }}">{{ task.title }}</a></li>
+                        {% empty %}
+                            <li>Пока нет заданий</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% empty %}
+                <li>Пока нет тем</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Текст задания</h2>
+        <div class="task" id="task-content"></div>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const topicLinks = document.querySelectorAll('.topic-link');
+            const taskLinks = document.querySelectorAll('.task-link');
+            const taskContent = document.getElementById('task-content');
+
+            topicLinks.forEach(topicLink => {
+                topicLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const topicId = topicLink.getAttribute('data-topic');
+                    const taskList = document.getElementById(`task-list-${topicId}`);
+                    
+                    if (taskList) {
+                        taskList.style.display = (taskList.style.display === 'none') ? 'block' : 'none';
+                    }
+                });
+            });
+
+            taskLinks.forEach(taskLink => {
+                taskLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const taskId = taskLink.getAttribute('data-task');
+                    fetch(`/api/tasks/${taskId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            taskContent.textContent = data.description;
+                        });
+                });
+            });
+        });
+    </script>
+{% endblock %}
