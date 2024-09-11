@@ -12,8 +12,8 @@ class TopicClass5(models.Model):
         return f'/task_lists/{self.pk}'
 
     class Meta:
-        verbose_name = 'Тема'
-        verbose_name_plural = 'Темы'
+        verbose_name = 'Тема для 5 класса'
+        verbose_name_plural = 'Темы для 5 класса'
 
 
 class TaskClass5(models.Model):
@@ -28,5 +28,5 @@ class TaskClass5(models.Model):
         return f'/task_lists/{self.pk}'
 
     class Meta:
-        verbose_name = 'Задание'
-        verbose_name_plural = 'Задание'
+        verbose_name = 'Задание для 5 класса'
+        verbose_name_plural = 'Задание для 5 класса'
