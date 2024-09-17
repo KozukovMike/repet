@@ -11,8 +11,15 @@
 }
 
 .task-list {
+    display: none;
     padding: 20px;
     background-color: #e0e0e0;
+}
+
+.task-text {
+    display: none;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
 .content {
@@ -20,10 +27,10 @@
     padding: 20px;
 }
 
-.hide {
-    display: none !important;
-}
-
 .show {
     display: block !important;
+}
+
+.hide {
+    display: none !important;
 }

@@ -12,8 +12,8 @@ class TopicClass5(models.Model):
         return f'/task_lists/{self.pk}'
 
     class Meta:
-        verbose_name = 'Тема для 5 класса'
-        verbose_name_plural = 'Темы для 5 класса'
+        verbose_name = 'Тема'
+        verbose_name_plural = 'Темы'
 
 
 class TaskClass5(models.Model):
@@ -28,5 +28,29 @@ class TaskClass5(models.Model):
         return f'/task_lists/{self.pk}'
 
     class Meta:
-        verbose_name = 'Задание для 5 класса'
-        verbose_name_plural = 'Задание для 5 класса'
+        verbose_name = 'Задание'
+        verbose_name_plural = 'Задания'
+
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200, verbose_name='Текст вопроса')
+
+    def __str__(self):
+        return self.question_text
+
+    class Meta:
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Вопрос к которому относится ответ')
+    choice_text = models.CharField(max_length=200, verbose_name='Текст ответа')
+    is_correct = models.BooleanField(default=False, verbose_name='Правильный?')
+
+    def __str__(self):
+        return self.question.question_text
+
+    class Meta:
+        verbose_name = 'Ответ'
+        verbose_name_plural = 'Ответы'

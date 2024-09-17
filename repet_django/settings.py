@@ -29,8 +29,12 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # По умолчанию
+]
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'tasks.apps.TasksConfig',
     'base.apps.BaseConfig',
     'django.contrib.admin',
@@ -106,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
 
@@ -145,6 +149,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CKEditor settings
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+# settings.py
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/login/'
+
 
 # settings.py
 

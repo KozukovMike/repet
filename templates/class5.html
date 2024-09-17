@@ -2,22 +2,14 @@
 {% load static %}
 {% block class5 %}
     <link rel="stylesheet" href="{% static 'css/class.css' %}">
-    <style>
-        .task-list {
-            display: none;
-        }
-    </style>
-<div class="container">
     <div class="sidebar">
         <h3>Темы заданий</h3>
         <ul id="topic-list">
             {% for topic in topic_list %}
-                <li>
-                    <a href="#" class="topic-link" data-topic="{{ topic.id }}">{{ topic.name }}</a>
+                <li><a href="#" class="topic-link" data-topic="{{ topic.id }}">{{ topic.name }}</a>
                     <ul class="task-list" id="task-list-{{ topic.id }}">
                         {% for task in topic.tasks.all %}
-                            <li>
-                                <a href="#" class="task-link" id="task-name-{{ task.id }}" data-task="{{ task.id }}">{{ task.title }}</a>
+                            <li><a href="#" class="task-link" id="task-name-{{ task.id }}" data-task="{{ task.id }}">{{ task.title }}</a>
                                 <div class="task-text" id="task-text-{{ task.id }}" style="display: none;">
                                     {{ task.description }}
                                 </div>
@@ -32,36 +24,5 @@
             {% endfor %}
         </ul>
     </div>
-
-    <div class="content">
-        <h2>Текст задания</h2>
-        <div class="task" id="task-content"></div>
-    </div>
-</div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const topicLinks = document.querySelectorAll('.topic-link');
-            const taskLinks = document.querySelectorAll('.task-link');
-
-            topicLinks.forEach(function(topicLink) {
-                topicLink.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const topicId = topicLink.getAttribute('data-topic');
-                    const taskList = document.getElementById(`task-list-${topicId}`);
-                    if (taskList) {
-                        taskList.classList.toggle('show');
-                    }
-                });
-            });
-
-            taskLinks.forEach(function(taskLink) {
-                taskLink.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const taskId = taskLink.dataset.task;
-                    const taskText = document.getElementById('task-text-' + taskId);
-                    document.getElementById('task-content').innerHTML = taskText.innerHTML;
-                });
-            });
-        });
-    </script>
+    <script src="{% static 'js/class.js' %}"></script>
 {% endblock %}
