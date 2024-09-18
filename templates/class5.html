@@ -18,19 +18,7 @@
                             <li>Пока нет заданий</li>
                         {% endfor %}
                         {% for test in topic.tasks_test.all %}
-                            <li><a href="#" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
-                                <div class="test-form hide" id="test-form-{{ test.id }}">
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        {% for question in test.question.all %}
-                                            <h3>{{ question.text }}</h3>
-                                            {% for choice in question.choice_set.all %}
-                                                <input type="radio" name="choice" value="{{ choice.id }}">{{ choice.text }}<br>
-                                            {% endfor %}
-                                        {% endfor %}
-                                        <button type="submit">Отправить</button>
-                                    </form>
-                                </div>
+                            <li><a target="_blank" href="{% url 'test_view' test_id=test.id %}" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
                             </li>
                         {% empty %}
                             <li>Пока нет тестов</li>

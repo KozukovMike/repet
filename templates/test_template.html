@@ -16,7 +16,7 @@
       margin: 0;
     }
 
-    .container {
+    .container-test {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
@@ -102,25 +102,26 @@
     {% if score %}
         <h2>Правильных ответов: {{ score }} из {{ total_questions }}</h2>
     {% else %}
-      <div class="container">
+      <div class="container-test">
         <h1>Тест</h1>
-        <form action="{% url 'test_view' %}" method="post">
+        <form action="{% url 'test_view' test_id=test.id %}" method="post">
           {% csrf_token %}
-          <div class="slider">
-            {% for question in questions %}
-            <div class="question-slide {% if forloop.first %}active{% endif %}">
-              <h2>{{ question.question_text }}</h2>
-              {% for choice in question.choice_set.all %}
-              <input type="radio" id="choice_{{ choice.id }}" name="question_{{ question.id }}" value="{{ choice.id }}">
-              <label for="choice_{{ choice.id }}">{{ choice.choice_text }}</label><br>
-              {% endfor %}
-            </div>
-            {% endfor %}
-          </div>
-          <div class="navigation">
-            <button type="button" class="prev" onclick="prevSlide()">Назад</button>
-            <button type="button" class="next" onclick="nextSlide()">Далее</button>
-          </div>
+            <input type="hidden" name="test_id" value="{{ test.id }}">
+              <div class="slider">
+                {% for question in test.question.all %}
+                <div class="question-slide {% if forloop.first %}active{% endif %}">
+                  <h2>{{ question.question_text }}</h2>
+                  {% for choice in question.choice_set.all %}
+                  <input type="radio" id="choice_{{ choice.id }}" name="question_{{ question.id }}" value="{{ choice.id }}">
+                  <label for="choice_{{ choice.id }}">{{ choice.choice_text }}</label><br>
+                  {% endfor %}
+                </div>
+                {% endfor %}
+              </div>
+              <div class="navigation">
+                <button type="button" class="prev" onclick="prevSlide()">Назад</button>
+                <button type="button" class="next" onclick="nextSlide()">Далее</button>
+              </div>
           <button type="submit" style="display: none;">Отправить</button>
         </form>
       </div>

@@ -24,14 +24,4 @@ document.addEventListener('DOMContentLoaded', function() {
             taskDescription.innerHTML = text + taskText.innerHTML;
         });
     });
-
-    testLinks.forEach(function (testLink){
-       testLink.addEventListener('click', function (event) {
-           event.preventDefault();
-           const testId = testLink.dataset.test;
-           const testText = document.getElementById('test-form-' + testId);
-           taskDescription.innerHTML = text + testText.innerHTML;
-       });
-    });
-
 });
