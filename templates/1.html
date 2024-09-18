@@ -1,19 +1,18 @@
-<div class="container">
-    <div class="sidebar">
-        <h3>Темы заданий</h3>
-        <ul id="topic-list">
-            <li><a href="#" class="topic-link" data-topic="Электричество">Электричество</a></li>
-            <li><a href="#" class="topic-link" data-topic="Молекулярка">Молекулярка</a></li>
-        </ul>
-    </div>
-
-    <div class="content">
-        <h2>Текст задания</h2>
-        <div class="task" id="task-content"></div>
-    </div>
-</div>
-
-<div class="task-list" id="task-list">
-    <h4>Задания:</h4>
-    <ul id="tasks"></ul>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <h3>{{ question.text }}</h3>
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" value="{{ choice.id }}">{{ choice.text }}<br>
+            {% endfor %}
+        {% endfor %}
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>

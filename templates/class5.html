@@ -10,12 +10,30 @@
                     <ul class="task-list" id="task-list-{{ topic.id }}">
                         {% for task in topic.tasks.all %}
                             <li><a href="#" class="task-link" id="task-name-{{ task.id }}" data-task="{{ task.id }}">{{ task.title }}</a>
-                                <div class="task-text" id="task-text-{{ task.id }}" style="display: none;">
+                                <div class="task-text hide" id="task-text-{{ task.id }}">
                                     {{ task.description }}
                                 </div>
                             </li>
                         {% empty %}
                             <li>Пока нет заданий</li>
+                        {% endfor %}
+                        {% for test in topic.tasks_test.all %}
+                            <li><a href="#" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
+                                <div class="test-form hide" id="test-form-{{ test.id }}">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        {% for question in test.question.all %}
+                                            <h3>{{ question.text }}</h3>
+                                            {% for choice in question.choice_set.all %}
+                                                <input type="radio" name="choice" value="{{ choice.id }}">{{ choice.text }}<br>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        <button type="submit">Отправить</button>
+                                    </form>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <li>Пока нет тестов</li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -23,6 +41,9 @@
                 <li>Пока нет тем</li>
             {% endfor %}
         </ul>
+    </div>
+    <div class="task-description" id="task-description">
+        <h3>Текст задания</h3>
     </div>
     <script src="{% static 'js/class.js' %}"></script>
 {% endblock %}

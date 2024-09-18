@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TaskClass5, TopicClass5, Question, Choice
+from .models import TaskClass5, TopicClass5, Question, Choice, Test
 
 
 # Register your models here.
@@ -26,3 +26,6 @@ class ChoiceAdmin(admin.ModelAdmin):
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('question_text',)
+
+
+admin.site.register(Test)

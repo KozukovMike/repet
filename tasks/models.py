@@ -54,3 +54,16 @@ class Choice(models.Model):
     class Meta:
         verbose_name = 'Ответ'
         verbose_name_plural = 'Ответы'
+
+
+class Test(models.Model):
+    topic = models.ForeignKey(TopicClass5, on_delete=models.CASCADE, verbose_name='Тема', related_name='tasks_test')
+    question = models.ManyToManyField(Question, verbose_name='Вопрос в тесте', related_name='questions')
+    test_name = models.CharField(max_length=100, verbose_name='Имя теста')
+
+    def __str__(self):
+        return self.test_name
+
+    class Meta:
+        verbose_name = 'Тест'
+        verbose_name_plural = 'Тесты'

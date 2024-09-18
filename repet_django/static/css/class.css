@@ -34,3 +34,12 @@
 .hide {
     display: none !important;
 }
+
+.task-description {
+    top: 0;
+    right: 0;
+    width: 100%; /* Измените ширину по вашему усмотрению */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
