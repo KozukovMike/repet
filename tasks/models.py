@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -67,3 +68,16 @@ class Test(models.Model):
     class Meta:
         verbose_name = 'Тест'
         verbose_name_plural = 'Тесты'
+
+
+class TestResult(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    test = models.ForeignKey(Test, on_delete=models.CASCADE, verbose_name='Тест', related_name='test_results')
+    score = models.IntegerField(verbose_name='Результат')
+
+    def __str__(self):
+        return f'{self.user.username} - {self.test.test_name} - {self.score}%'
+
+    class Meta:
+        verbose_name = 'Резульат теста'
+        verbose_name_plural = 'Результаты тестов'
