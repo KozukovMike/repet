@@ -13,13 +13,13 @@ class TopicClass5(models.Model):
         return f'/task_lists/{self.pk}'
 
     class Meta:
-        verbose_name = 'Тема'
-        verbose_name_plural = 'Темы'
+        verbose_name = 'Тема 5 класса'
+        verbose_name_plural = 'Темы 5 класса'
 
 
 class TaskClass5(models.Model):
     title = models.CharField(max_length=100, verbose_name="Название задания")
-    topic = models.ForeignKey(TopicClass5, on_delete=models.CASCADE, related_name='tasks')
+    topic = models.ForeignKey(TopicClass5, on_delete=models.CASCADE, verbose_name='Тема', related_name='tasks')
     description = models.TextField(verbose_name='Описание задания')
 
     def __str__(self):
@@ -29,8 +29,8 @@ class TaskClass5(models.Model):
         return f'/task_lists/{self.pk}'
 
     class Meta:
-        verbose_name = 'Задание'
-        verbose_name_plural = 'Задания'
+        verbose_name = 'Задание для 5 класса'
+        verbose_name_plural = 'Задания для 5 класса'
 
 
 class Question(models.Model):
@@ -40,8 +40,8 @@ class Question(models.Model):
         return self.question_text
 
     class Meta:
-        verbose_name = 'Вопрос'
-        verbose_name_plural = 'Вопросы'
+        verbose_name = 'Вопрос для теста'
+        verbose_name_plural = 'Вопросы для теста'
 
 
 class Choice(models.Model):
@@ -53,8 +53,8 @@ class Choice(models.Model):
         return self.question.question_text
 
     class Meta:
-        verbose_name = 'Ответ'
-        verbose_name_plural = 'Ответы'
+        verbose_name = 'Ответ для теста'
+        verbose_name_plural = 'Ответы для теста'
 
 
 class Test(models.Model):

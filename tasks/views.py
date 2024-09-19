@@ -21,7 +21,6 @@ def class5_page(request):
     context = {
         'topic_list': topic_list,
     }
-    print(topic_list[0])
     return render(request, 'class5.html', context)
 
 
@@ -42,7 +41,6 @@ def test_view(request, test_id):
 
                 if selected_choice.is_correct:
                     score += 1
-        print(len(test.question.all()))
         test_result = TestResult(user=request.user, test=test, score=math.trunc(score / len(test.question.all()) * 100))
         test_result.save()
         context = {
