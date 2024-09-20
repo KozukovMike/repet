@@ -16,15 +16,17 @@ Including another URLconf
 """
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from tasks import views as task_views
 from users import views as user_views
 from base import views as base_views
+from about import views as about_views
 
 
 urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', base_views.custom_logout, name='logout'),
@@ -33,4 +35,5 @@ urlpatterns = [
     path('test/<int:test_id>/', task_views.test_view, name='test_view'),
     path('register/', user_views.register, name='register'),
     path('home/', base_views.home, name='home'),
+    path('about/', about_views.about, name='about')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

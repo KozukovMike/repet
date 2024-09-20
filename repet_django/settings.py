@@ -34,6 +34,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INSTALLED_APPS = [
+    'about.apps.AboutConfig',
     'users.apps.UsersConfig',
     'tasks.apps.TasksConfig',
     'base.apps.BaseConfig',
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CKEditor settings
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
 
 
 # settings.py
