@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'main_page.apps.MainPageConfig',
     'about.apps.AboutConfig',
     'users.apps.UsersConfig',
-    'tasks.apps.TasksConfig',
+    'class5.apps.Class5Config',
     'base.apps.BaseConfig',
     'django.contrib.admin',
     'django.contrib.auth',

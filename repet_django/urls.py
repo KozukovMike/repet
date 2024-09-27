@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from tasks import views as task_views
+from class5 import views as class5_views
 from users import views as user_views
 from base import views as base_views
 from about import views as about_views
@@ -30,9 +30,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', base_views.custom_logout, name='logout'),
-    path('task_page/', task_views.task_page, name='task_page'),
-    path('task_page/class/5', task_views.class5_page, name='class5'),
-    path('test/<int:test_id>/', task_views.test_view, name='test_view'),
+    path('task_page/', class5_views.task_page, name='task_page'),
+    path('task_page/class/5', class5_views.class5_page, name='class5'),
+    path('test/<int:test_id>/', class5_views.test_view, name='test_view'),
     path('register/', user_views.register, name='register'),
     path('home/', base_views.home, name='home'),
     path('about/', about_views.about, name='about'),
