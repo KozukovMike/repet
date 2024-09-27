@@ -35,5 +35,5 @@ urlpatterns = [
     path('test/<int:test_id>/', task_views.test_view, name='test_view'),
     path('register/', user_views.register, name='register'),
     path('home/', base_views.home, name='home'),
-    path('about/', about_views.about, name='about')
+    path('about/', about_views.about, name='about'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

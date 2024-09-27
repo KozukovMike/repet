@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}
+    {% if content %}
+        {% for text in content %}
+            {{ text.content|safe }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

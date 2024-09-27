@@ -34,6 +34,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INSTALLED_APPS = [
+    'main_page.apps.MainPageConfig',
     'about.apps.AboutConfig',
     'users.apps.UsersConfig',
     'tasks.apps.TasksConfig',
