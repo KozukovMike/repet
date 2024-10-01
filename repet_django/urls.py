@@ -35,6 +35,7 @@ urlpatterns = [
     path('task_page/', class5_views.task_page, name='task_page'),
     path('task_page/class/5', class5_views.class5_page, name='class5'),
     path('task_page/class/6', class6_views.class6_page, name='class6'),
+    path('task_page/class/7', class7_views.class7_page, name='class7'),
     path('test/class5/<int:test_id>/', class5_views.test_view_5, name='test5'),
     path('test/class6/<int:test_id>/', class6_views.test_view_6, name='test6'),
     path('test/class7/<int:test_id>/', class7_views.test_view_7, name='test7'),
