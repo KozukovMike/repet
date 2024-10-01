@@ -20,6 +20,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from class5 import views as class5_views
+from class6 import views as class6_views
+from class7 import views as class7_views
 from users import views as user_views
 from base import views as base_views
 from about import views as about_views
@@ -32,7 +34,10 @@ urlpatterns = [
     path('logout/', base_views.custom_logout, name='logout'),
     path('task_page/', class5_views.task_page, name='task_page'),
     path('task_page/class/5', class5_views.class5_page, name='class5'),
-    path('test/<int:test_id>/', class5_views.test_view, name='test_view'),
+    path('task_page/class/6', class6_views.class6_page, name='class6'),
+    path('test/class5/<int:test_id>/', class5_views.test_view_5, name='test5'),
+    path('test/class6/<int:test_id>/', class6_views.test_view_6, name='test6'),
+    path('test/class7/<int:test_id>/', class7_views.test_view_7, name='test7'),
     path('register/', user_views.register, name='register'),
     path('home/', base_views.home, name='home'),
     path('about/', about_views.about, name='about'),

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'users.apps.UsersConfig',
     'class5.apps.Class5Config',
+    'class6.apps.Class6Config',
+    'class7.apps.Class7Config',
     'base.apps.BaseConfig',
     'django.contrib.admin',
     'django.contrib.auth',

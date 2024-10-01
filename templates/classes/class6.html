@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block class5 %}
+{% block class6 %}
     <link rel="stylesheet" href="{% static 'css/class.css' %}">
     <div class="sidebar">
         <h3>Темы заданий</h3>
@@ -18,7 +18,7 @@
                             <li>Пока нет заданий</li>
                         {% endfor %}
                         {% for test in topic.tasks_test.all %}
-                            <li><a target="_blank" href="{% url 'test_view' test_id=test.id %}" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
+                            <li><a target="_blank" href="{% url 'test6' test_id=test.id %}" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
                             </li>
                         {% empty %}
                             <li>Пока нет тестов</li>

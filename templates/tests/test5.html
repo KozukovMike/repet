@@ -13,7 +13,7 @@
     {% else %}
       <div class="container-test">
         <h1>Тест</h1>
-        <form action="{% url 'test_view' test_id=test.id %}" method="post">
+        <form action="{% url 'test5' test_id=test.id %}" method="post">
           {% csrf_token %}
             <input type="hidden" name="test_id" value="{{ test.id }}">
               <div class="slider">
