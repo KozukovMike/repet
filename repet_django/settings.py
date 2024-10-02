@@ -35,11 +35,13 @@ AUTHENTICATION_BACKENDS = [
 
 INSTALLED_APPS = [
     'main_page.apps.MainPageConfig',
+    'check.apps.CheckConfig',
     'about.apps.AboutConfig',
     'users.apps.UsersConfig',
     'class5.apps.Class5Config',
     'class6.apps.Class6Config',
     'class7.apps.Class7Config',
+    'class8.apps.Class8Config',
     'base.apps.BaseConfig',
     'django.contrib.admin',
     'django.contrib.auth',

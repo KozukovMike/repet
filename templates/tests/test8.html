@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест на Django</title>
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+</head>
+<br>
+    {% if score %}
+        <h2>Правильных ответов: {{ score }} из {{ total_questions }}</h2>
+    {% else %}
+      <div class="container-test">
+        <h1>Тест</h1>
+        <form action="{% url 'test8' test_id=test.id %}" method="post">
+          {% csrf_token %}
+            <input type="hidden" name="test_id" value="{{ test.id }}">
+              <div class="slider">
+                {% for question in test.question.all %}
+                <div class="question-slide {% if forloop.first %}active{% endif %}">
+                  <h2>{{ question.question_text }}</h2>
+                      {% for choice in question.choice8_set.all %}
+                        <input type="radio" id="choice_{{ choice.id }}" name="question_{{ question.id }}" value="{{ choice.id }}">
+                        <label for="choice_{{ choice.id }}">{{ choice.choice_text }}</label><br>
+                      {% endfor %}
+                </div>
+                {% endfor %}
+              </div>
+              <div class="navigation">
+                <button type="button" class="prev" onclick="prevSlide()">Назад</button>
+                <button type="button" class="next" onclick="nextSlide()">Далее</button>
+              </div>
+          <button type="submit" style="display: none;">Отправить</button>
+        </form>
+      </div>
+    {% endif %}
+
+  <script src="{% static 'js/test.js' %}"></script>
+</body>
+</html>
