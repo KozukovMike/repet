@@ -18,7 +18,7 @@ class Classes(models.Model):
 class Topic(models.Model):
 
     topic_name = models.CharField(max_length=100, verbose_name='Название темы')
-    class_number_id = models.ForeignKey(Classes, on_delete=models.CASCADE, verbose_name='ID номера класса', related_name='topic_classes')
+    class_number_id = models.ForeignKey(Classes, on_delete=models.CASCADE, verbose_name='номер класса', related_name='topic_classes')
 
     def __str__(self):
         return self.topic_name

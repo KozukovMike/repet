@@ -13,14 +13,14 @@
     {% else %}
       <div class="container-test">
         <h1>Тест</h1>
-        <form action="{% url 'test5' test_id=test.id %}" method="post">
+        <form action="{% url 'test' test_id=test.id %}" method="post">
           {% csrf_token %}
             <input type="hidden" name="test_id" value="{{ test.id }}">
               <div class="slider">
                 {% for question in test.question.all %}
                 <div class="question-slide {% if forloop.first %}active{% endif %}">
                   <h2>{{ question.question_text }}</h2>
-                      {% for choice in question.choice5_set.all %}
+                      {% for choice in question.choice_questions.all %}
                         <input type="radio" id="choice_{{ choice.id }}" name="question_{{ question.id }}" value="{{ choice.id }}">
                         <label for="choice_{{ choice.id }}">{{ choice.choice_text }}</label><br>
                       {% endfor %}

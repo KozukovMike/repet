@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block class5 %}
+{% block class6 %}
     <link rel="stylesheet" href="{% static 'css/class.css' %}">
     <div class="sidebar">
         <h3>Темы заданий</h3>
         <ul id="topic-list">
-            {% for topic in topic_list %}
-                <li><a href="#" class="topic-link" data-topic="{{ topic.id }}">{{ topic.name }}</a>
+            {% for topic in class_list.topic_classes.all %}
+                <li><a href="#" class="topic-link" data-topic="{{ topic.id }}">{{ topic.topic_name }}</a>
                     <ul class="task-list" id="task-list-{{ topic.id }}">
-                        {% for task in topic.tasks.all %}
-                            <li><a href="#" class="task-link" id="task-name-{{ task.id }}" data-task="{{ task.id }}">{{ task.title }}</a>
+                        {% for task in topic.task_topics.all %}
+                            <li><a href="#" class="task-link" id="task-name-{{ task.id }}" data-task="{{ task.id }}">{{ task.task_name }}</a>
                                 <div class="task-text hide" id="task-text-{{ task.id }}">
                                     {{ task.description }}
                                 </div>
@@ -17,8 +17,8 @@
                         {% empty %}
                             <li>Пока нет заданий</li>
                         {% endfor %}
-                        {% for test in topic.tasks_test.all %}
-                            <li><a target="_blank" href="{% url 'test5' test_id=test.id %}" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
+                        {% for test in topic.test_topic.all %}
+                            <li><a target="_blank" href="{% url 'test' test_id=test.id %}" class="test-link" id="test-name-{{ test.id }}" data-test="{{ test.id }}">{{ test.test_name }}</a>
                             </li>
                         {% empty %}
                             <li>Пока нет тестов</li>
@@ -35,3 +35,9 @@
     </div>
     <script src="{% static 'js/class.js' %}"></script>
 {% endblock %}
+</title>
+</head>
+<body>
+
+</body>
+</html>
