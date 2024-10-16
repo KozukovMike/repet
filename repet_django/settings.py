@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,11 +87,19 @@ WSGI_APPLICATION = 'repet_django.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+print(os.getenv('USER'))  # Должно вывести 'postgres'
+print(os.getenv('PASSWORD'))  # Должно вывести 'fantasy27'
+print(os.getenv('HOST'))
+print(os.getenv('PORT'))
+print(os.getenv('DATABASE'))
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': os.getenv('HOST'),
+        'PORT': os.getenv('PORT'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
+        'NAME': os.getenv('DATABASE'),
     }
 }
 
@@ -140,14 +150,9 @@ STATIC_ROOT = 'static'
 MEDIA_ROOT = 'media'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-STATICFILES_DIRS = [
-    BASE_DIR / "repet_django/static/",
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
