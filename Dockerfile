@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.11.0
 
 SHELL ["/bin/bash", "-c"]
 
@@ -22,4 +22,4 @@ RUN pip install -r requirements.txt
 
 USER mike
 
-CMD ["gunicorn","-b","0.0.0.0:8001","soaqaz.wsgi:application"]
+CMD ["gunicorn","-b","127.0.0.1:8001","repet_django.wsgi:application"]
