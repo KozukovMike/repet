@@ -87,11 +87,6 @@ WSGI_APPLICATION = 'repet_django.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-print(os.getenv('USER'))  # Должно вывести 'postgres'
-print(os.getenv('PASSWORD'))  # Должно вывести 'fantasy27'
-print(os.getenv('HOST'))
-print(os.getenv('PORT'))
-print(os.getenv('DATABASE'))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -146,15 +141,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static'
-MEDIA_ROOT = 'media'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "repet_django/static/",
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / "repet_django/static/",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

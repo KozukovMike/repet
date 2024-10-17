@@ -1,25 +1,15 @@
 FROM python:3.11.0
 
-SHELL ["/bin/bash", "-c"]
-
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN pip install --upgrade pip
+WORKDIR /usr/src/mike
 
-RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
-    libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
+COPY ./requirements.txt /usr/src/requirements.txt
 
-RUN useradd -rms /bin/bash mike && chmod 777 /opt /run
+RUN pip install -r /usr/src/requirements.txt
 
-WORKDIR /mike
+COPY . /usr/src/mike
 
-RUN mkdir /mike/static && mkdir /mike/media && chown -R mike:mike /mike && chmod 755 /mike
-
-COPY --chown=mike:mike . .
-
-RUN pip install -r requirements.txt
-
-USER mike
-
-CMD ["gunicorn","-b","127.0.0.1:8001","repet_django.wsgi:application"]
+EXPOSE 8000
+CMD ["python","manage.py","runserver","0.0.0.0:8000"]
