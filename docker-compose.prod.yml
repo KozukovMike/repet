@@ -7,13 +7,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
-      - .env.dev
+      - .env.prod
   django:
     build:
       context: ./
-      dockerfile: Dockerfile
-    command: >
-      bash -c "python manage.py runserver 0.0.0.0:8000"
+      dockerfile: Dockerfile.prod
+    command: "gunicorn repet_django.wsgi:application --bind 0.0.0.0:8000"
     container_name: django
     ports:
       - 8000:8000
@@ -23,7 +22,7 @@ services:
       - static_volume:/usr/src/mike/static
       - media_volume:/usr/src/mike/media
     env_file:
-      - .env.dev
+      - .env.prod
 
 volumes:
   postgres_data:
