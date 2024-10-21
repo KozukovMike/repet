@@ -142,14 +142,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # settings.py
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/usr/src/mike/media/'
-
 STATIC_URL = '/static/'
-STATIC_ROOT = '/usr/src/mike/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "repet_django/static/",
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [STATIC_DIR]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

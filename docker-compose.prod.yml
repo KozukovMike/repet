@@ -14,11 +14,11 @@ services:
       dockerfile: Dockerfile.prod
     command: "gunicorn repet_django.wsgi:application --bind 0.0.0.0:8000"
     container_name: django
+    volumes:
+      - static_volume:/home/app/django/static
+      - media_volume:/home/app/django/media
     expose:
       - 8000
-    volumes:
-      - static_volume:/usr/src/mike/static
-      - media_volume:/usr/src/mike/media
     env_file:
       - .env.prod
     depends_on:
@@ -27,6 +27,9 @@ services:
     build: ./nginx
     ports:
       - 1337:80
+    volumes:
+      - static_volume:/home/app/django/static
+      - media_volume:/home/app/django/media
     depends_on:
       - django
 
