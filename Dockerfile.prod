@@ -55,6 +55,5 @@ RUN chmod +x $APP_HOME/entrypoint.prod.sh
 
 # Переключение на пользователя `app`
 USER app
-
 # Установка точки входа
 ENTRYPOINT ["/home/app/django/entrypoint.prod.sh"]
