@@ -7,6 +7,7 @@ from .models import Topic, Task, Test, Classes, Choice, TestResult, Question
 class ClassesAdmin(admin.ModelAdmin):
     list_display = ('class_number',)
 
+
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('task_name', 'topic_name_id', 'description')

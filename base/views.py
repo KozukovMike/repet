@@ -17,4 +17,6 @@ def home(request):
 
 def custom_logout(request):
     logout(request)
-    return redirect('home')
+    response = redirect('home')
+    response.delete_cookie('username')
+    return response

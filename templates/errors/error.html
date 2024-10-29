@@ -1,0 +1,10 @@
+{% extends 'errors/base_errors.html' %}
+{% load static %}
+<body>
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+    <div class="container">
+        <h1>Произошла ошибка</h1>
+        <p>{{ error }}</p>
+        <p>Пожалуйста, попробуйте еще раз позже или вернитесь на <a href="{% url 'home' %}">главную страницу</a>.</p>
+    </div>
+</body>
