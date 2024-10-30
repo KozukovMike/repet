@@ -28,7 +28,7 @@ from check import views as check_views
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('login/', user_views.loging, name='login'),
     path('logout/', base_views.custom_logout, name='logout'),
     path('task_page/', check_views.task_page, name='task_page'),
     path('task_page/class/5', check_views.class5_page, name='class5'),

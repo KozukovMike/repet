@@ -14,4 +14,15 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': 'Password',
             'password2': 'Confirm Password',
         }
-        
+
+
+class CustomLogingForm(UserCreationForm):
+    email = forms.EmailField(label='Email', required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+        labels = {
+            'username': 'Username',
+            'password': 'Password',
+        }
