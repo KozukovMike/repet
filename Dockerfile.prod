@@ -45,20 +45,24 @@ RUN pip install --no-cache /wheels/*
 
 # Копирование кода приложения
 COPY . $APP_HOME
+COPY ./repet_django/static $APP_HOME/static1
 
 # Настройка прав и доступов
 RUN chown -R app:app $APP_HOME
 
 # Копирование entrypoint и установка прав
 COPY entrypoint.prod.sh $APP_HOME/entrypoint.prod.sh
-RUN chmod +x $APP_HOME/entrypoint.prod.sh
+# RUN chmod +x $APP_HOME/entrypoint.prod.sh
 
 # Установка прав на директории
-RUN chown -R app:app /home/app/django/media /home/app/django/static
-RUN chmod -R 755 /home/app/django/media /home/app/django/static
+# RUN chown -R app:app /home/app/django/media /home/app/django/static
+# RUN chown -R app:app /home/app/django
+# RUN chmod -R 777 /home/app/django/media /home/app/django/static
+RUN chmod -R 777 /home/app/django
 
 # Переключение на пользователя `app`
-USER app
+# USER app
+
 
 # Установка точки входа
 ENTRYPOINT ["/home/app/django/entrypoint.prod.sh"]

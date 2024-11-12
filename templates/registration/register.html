@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_login.css.css' %}">
 </head>
 <body>
     <h2>Register</h2>
-    <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
-    <p><a href="{% url 'login' %}" class="btn">Login</a></p>
+    <section id="content">
+		<form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.non_field_errors %}
+                <p style="color: red;">{{ form.non_field_errors }}</p>
+            {% endif %}
+			<div>
+				<input type="submit" value="Register" />
+				<a href="#">Lost your password?</a>
+				<a href="{% url 'login' %}" class="btn">Register</a>
+			</div>
+		</form>
+	</section>
 
 </body>
 </html>
